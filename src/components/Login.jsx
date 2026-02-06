@@ -18,8 +18,10 @@ const initialForm = {
 };
 
 const errorMessages = {
-  email: "Please enter a valid email address",
-  password: "Password must be at least 4 characters long",
+  email: "Lütfen geçerli bir email giriniz",
+  password:
+    "Şifre en az 8 karakter, büyük harf, küçük harf, rakam ve özel karakter içermelidir.",
+  terms: "Kullanım koşullarını kabul etmelisiniz",
 };
 
 const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -43,12 +45,11 @@ export default function Login() {
     if (!form.password) {
       newErrors.password = "Şifre zorunlu";
     } else if (!strongPasswordRegex.test(form.password)) {
-      newErrors.password =
-        "Şifre en az 8 karakter, büyük harf, küçük harf, rakam ve özel karakter içermelidir.";
+      newErrors.password = errorMessages.password;
     }
 
     if (!form.terms) {
-      newErrors.terms = "You must accept the terms";
+      newErrors.terms = errorMessages.terms;
     }
 
     setErrors(newErrors);
