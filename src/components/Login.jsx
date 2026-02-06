@@ -22,8 +22,7 @@ const errorMessages = {
   password: "Password must be at least 4 characters long",
 };
 
-const strongPasswordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#_-])[A-Za-z\d@$!%*?&.#_-]{8,}$/;
+const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -132,7 +131,9 @@ export default function Login() {
         <Label htmlFor="terms" check>
           I agree to terms of service and privacy policy
         </Label>
-        {errors.terms && <FormFeedback>{errors.terms}</FormFeedback>}
+        {errors.terms && (
+          <FormFeedback className="text-danger">{errors.terms}</FormFeedback>
+        )}
       </FormGroup>
 
       <FormGroup className="text-center p-4">
